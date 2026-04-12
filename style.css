@@ -1,6 +1,275 @@
+/* Lab 2: Styling with CSS — https://dsc106.com/labs/lab02/ */
+
+/* Step 2.4: accent color on root */
+html {
+  --color-accent: oklch(65% 50% 0);
+  accent-color: var(--color-accent);
+}
+
+/* Step 1: constrain width, center, padding */
 body {
-    /* Set line height to 1.5 times the font size
-         and use the OS’s UI font as the website font
-       */
-    font: 100%/1.5 system-ui;
-  }  
+  font: 100%/1.5 system-ui;
+  max-width: 100ch;
+  margin-inline: auto;
+  padding-inline: 1em;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* Step 4.4: heading defaults */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.page-header h1 {
+  font-size: 400%;
+}
+
+/* Step 2.1: list wrappers transparent to layout */
+nav ul,
+nav li {
+  display: contents;
+}
+
+/* Step 2.2 & 2.3 & 2.4: navigation */
+nav {
+  display: flex;
+  margin-bottom: 1em;
+  border-bottom: 1px solid oklch(80% 3% 200);
+}
+
+nav a {
+  flex: 1;
+  text-align: center;
+  padding: 0.5em;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Step 2.3: current page link */
+nav a.current {
+  border-bottom: 0.4em solid oklch(80% 3% 200);
+  padding-bottom: 0.1em;
+}
+
+/* Step 2.4: hover (+ optional same-hue background) */
+nav a:hover {
+  border-bottom: 0.4em solid var(--color-accent);
+  padding-bottom: 0.1em;
+  background-color: oklch(from var(--color-accent) 95% 5% h);
+}
+
+/* Step 3.1: form controls inherit typography */
+input,
+textarea,
+button {
+  font: inherit;
+}
+
+/* Step 3.3: contact form grid + subgrid */
+form.contact-form {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1em;
+}
+
+form.contact-form label {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+}
+
+form.contact-form button[type="submit"] {
+  grid-column: 1 / -1;
+}
+
+form.contact-form input,
+form.contact-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Step 4.2 & 4.3: projects responsive grid + row subgrid */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  grid-auto-rows: min-content min-content 1fr;
+  gap: 1em;
+}
+
+.projects article {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+}
+
+.projects article h2 {
+  margin: 0;
+}
+
+.projects img {
+  width: 100%;
+  height: auto;
+}
+
+/* Step 5: CV / resume — readable measure */
+.cv-page,
+.resume-page {
+  max-width: 65ch;
+}
+
+.doc-section > h2 {
+  border-bottom: 1px solid oklch(80% 3% 200);
+  padding-bottom: 0.25em;
+}
+
+/* CV page — mild styling (document only; nav/footer stay system UI) */
+.cv-page {
+  font-family: Georgia, "Times New Roman", serif;
+  color: oklch(22% 0.02 260);
+  padding-block: 0.5rem 2rem;
+}
+
+.cv-page .doc-header {
+  text-align: center;
+  padding: 1.25rem 1rem 1.5rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 2px solid oklch(88% 0.02 260);
+  background: oklch(99% 0.01 260);
+  border-radius: 6px;
+}
+
+.cv-page .doc-header h1 {
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0 0 0.35rem;
+}
+
+.cv-page .doc-subtitle {
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-style: italic;
+  color: oklch(38% 0.03 260);
+  margin: 0 0 0.75rem;
+}
+
+.cv-page .doc-contact {
+  font-family: system-ui, sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: oklch(40% 0.02 260);
+}
+
+.cv-page .doc-section {
+  margin-bottom: 1.75rem;
+}
+
+.cv-page .doc-section > h2 {
+  font-family: system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: oklch(35% 0.04 260);
+  border-bottom-color: oklch(75% 0.04 260);
+  margin-top: 0;
+}
+
+.cv-page .doc-section article {
+  padding: 0.85rem 0 0.85rem 0.85rem;
+  margin-bottom: 0.25rem;
+  border-left: 3px solid oklch(from var(--color-accent) 82% 12% h);
+}
+
+.cv-page .doc-section article header h3 {
+  font-size: 1.05rem;
+  margin: 0 0 0.2rem;
+  color: oklch(18% 0.02 260);
+}
+
+.cv-page .doc-section article header p {
+  font-size: 0.92rem;
+  margin: 0.15rem 0;
+  color: oklch(42% 0.02 260);
+}
+
+.cv-page .doc-section article > p,
+.cv-page .doc-section article li {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: oklch(32% 0.02 260);
+}
+
+.cv-page .doc-section ul {
+  margin: 0.35rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.cv-page .doc-section article time {
+  font-weight: 600;
+  color: oklch(38% 0.05 260);
+}
+
+.cv-page .publication-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.cv-page .publication-list li {
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid oklch(92% 0.02 260);
+}
+
+.cv-page .publication-list li:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.cv-page .publication-list cite {
+  font-style: italic;
+}
+
+.cv-page .doc-section:last-of-type article p {
+  margin: 0.4rem 0;
+}
+
+/* Layout helpers (contact page two-column; not duplicated in lab text but needed for structure) */
+.contact-grid {
+  display: grid;
+  gap: 2em;
+}
+
+@media (min-width: 50em) {
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+footer {
+  margin-top: 2em;
+  padding-block: 1em;
+  border-top: 1px solid oklch(80% 3% 200);
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: space-between;
+  align-items: center;
+}

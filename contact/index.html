@@ -8,16 +8,14 @@
 </head>
 <body>
     <nav>
-        <div class="nav-container">
-            <a href="../index.html" class="nav-logo">Steven Ngo</a>
-            <ul class="nav-links">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../projects/index.html">Projects</a></li>
-                <li><a href="../resume/index.html">Resume</a></li>
-                <li><a href="../cv/index.html">CV</a></li>
-                <li><a href="index.html" class="active">Contact</a></li>
-            </ul>
-        </div>
+        <a href="../index.html">Steven Ngo</a>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../projects/index.html">Projects</a></li>
+            <li><a href="../resume/index.html">Resume</a></li>
+            <li><a href="../cv/index.html">CV</a></li>
+            <li><a href="index.html" class="current">Contact</a></li>
+        </ul>
     </nav>
 
     <main>
@@ -65,23 +63,23 @@
                 <div class="contact-form-container">
                     <h2>Send a Message</h2>
                     <form class="contact-form" action="https://formspree.io/f/placeholder" method="POST">
-                        <div class="form-group">
-                            <label for="name">Name</label>
+                        <label>
+                            Name
                             <input type="text" id="name" name="name" required placeholder="Your name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
+                        </label>
+                        <label>
+                            Email
                             <input type="email" id="email" name="email" required placeholder="your@email.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
+                        </label>
+                        <label>
+                            Subject
                             <input type="text" id="subject" name="subject" required placeholder="What's this about?">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
+                        </label>
+                        <label>
+                            Message
                             <textarea id="message" name="message" rows="6" required placeholder="Your message..."></textarea>
-                        </div>
-                        <button type="submit" class="btn">Send Message</button>
+                        </label>
+                        <button type="submit">Send Message</button>
                     </form>
                 </div>
             </div>

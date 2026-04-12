@@ -8,16 +8,14 @@
 </head>
 <body>
     <nav>
-        <div class="nav-container">
-            <a href="../index.html" class="nav-logo">Steven Ngo</a>
-            <ul class="nav-links">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="index.html" class="active">Projects</a></li>
-                <li><a href="../resume/index.html">Resume</a></li>
-                <li><a href="../cv/index.html">CV</a></li>
-                <li><a href="../contact/index.html">Contact</a></li>
-            </ul>
-        </div>
+        <a href="../index.html">Steven Ngo</a>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="index.html" class="current">Projects</a></li>
+            <li><a href="../resume/index.html">Resume</a></li>
+            <li><a href="../cv/index.html">CV</a></li>
+            <li><a href="../contact/index.html">Contact</a></li>
+        </ul>
     </nav>
 
     <main>
@@ -27,137 +25,67 @@
         </section>
 
         <section class="section">
-            <div class="project-card">
-                <div class="project-header">
+            <div class="projects">
+                <article>
                     <h2>GamiBench</h2>
-                    <span class="project-date">Nov 2025</span>
-                </div>
-                <p class="project-venue">3x AAAI 2026, Springer-Nature 2026</p>
-                <div class="project-tech">
-                    <span class="tag">Python</span>
-                    <span class="tag">Jupyter Notebook</span>
-                    <span class="tag">OpenRouter</span>
-                    <span class="tag">LLM APIs</span>
-                    <span class="tag">Hugging Face</span>
-                </div>
-                <p>
-                    Led a cross-functional team of 4 to benchmark 22 open/proprietary MLLMs and VLMs on a
-                    newly-curated multi-modal 2D-to-3D spatial reasoning dataset of 340+ Origami crease-fold pairs.
-                    Designed 3 MC-VQA tasks across 2 complexity levels and 3 error/consistency metrics.
-                </p>
-                <ul>
-                    <li>Created the first benchmark specifically targeting spatial reasoning through origami folding tasks</li>
-                    <li>Evaluated models including GPT-4V, Gemini, Claude, and open-source alternatives</li>
-                    <li>Published findings accepted at multiple top-tier AI venues</li>
-                </ul>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
+                    <img src="https://vis-society.github.io/labs/2/images/empty.svg" alt="">
+                    <p>Benchmark for 22 MLLMs/VLMs on multi-modal 2D-to-3D spatial reasoning (3x AAAI, Springer-Nature 2026).</p>
+                </article>
+                <article>
                     <h2>InvasiveWatch</h2>
-                    <span class="project-date">Jan 2026 &ndash; Mar 2026</span>
-                </div>
-                <p class="project-venue">DS3 at UCSD &mdash; 1st Place DS3 Project</p>
-                <div class="project-tech">
-                    <span class="tag">React/Vite</span>
-                    <span class="tag">FastAPI</span>
-                    <span class="tag">pandas</span>
-                    <span class="tag">FAISS</span>
-                    <span class="tag">iNaturalist</span>
-                    <span class="tag">Mapbox GL</span>
-                    <span class="tag">Trefle.io</span>
-                </div>
-                <p>
-                    Developed a recommender system using cosine-similarity to rank species invasiveness risk
-                    over environmental feature vectors (biome/rainfall/soil) for any geolocation, serving sub-3s
-                    inference per query.
-                </p>
-                <ul>
-                    <li>Built data enrichment workflows with 7 external API integrations and taxa mapping scripts</li>
-                    <li>Refactored scikit-learn to FAISS and rendered range-informed heatmaps to support engine performance</li>
-                    <li>Scaled from 500 to 96K+ species under an up-scaling framework</li>
-                </ul>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
+                    <img src="https://vis-society.github.io/labs/2/images/empty.svg" alt="">
+                    <p>Species invasiveness recommender: React/Vite, FastAPI, FAISS, iNaturalist, Mapbox GL (1st Place DS3).</p>
+                </article>
+                <article>
                     <h2>SmartRation</h2>
-                    <span class="project-date">Jun 2025</span>
-                </div>
-                <p class="project-venue">UC Berkeley AI Hackathon</p>
-                <div class="project-tech">
-                    <span class="tag">TypeScript</span>
-                    <span class="tag">Next/Express.js</span>
-                    <span class="tag">Supabase</span>
-                    <span class="tag">Google Vision</span>
-                    <span class="tag">Anthropic Claude</span>
-                </div>
-                <p>
-                    Developed a full-stack computer vision web app that generates budget-conscious, personalized
-                    meal plans from grocery receipts.
-                </p>
-                <ul>
-                    <li>Integrated Google Vision OCR to parse unformatted receipt data and Kroger API to fetch live market prices</li>
-                    <li>Implemented Supabase RLS and email auth for secure user data management</li>
-                    <li>Prompt-engineered Claude to generate shopping lists and dietary recommendations based on user history data</li>
-                </ul>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <h2>LLM Weak-to-Strong Generalization via In-Context Learning</h2>
-                    <span class="project-date">2025</span>
-                </div>
-                <div class="project-tech">
-                    <span class="tag">Python</span>
-                    <span class="tag">OpenAI API</span>
-                    <span class="tag">Google Colab</span>
-                </div>
-                <p>
-                    Simulated super-aligning superior models with weak supervisors on MATH. Wrote gold/weak few-shot
-                    bank generation scripts and evaluated 6 weak/strong GPT model pairs, recovering 90&ndash;120% PGR.
-                </p>
-                <ul>
-                    <li>Designed cost-efficient evaluation pipeline in Colab with async OpenAI API calls and concurrency limits</li>
-                    <li>Implemented weak-bank caching for 3x faster iteration and 80% reduced API costs</li>
-                </ul>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <h2>IEEE Embedded AI Engineering Project</h2>
-                    <span class="project-date">2025</span>
-                </div>
-                <div class="project-tech">
-                    <span class="tag">Python</span>
-                    <span class="tag">ESP32</span>
-                    <span class="tag">NLP</span>
-                </div>
-                <p>
-                    Optimized small language models (SLMs) to perform speech-to-text NLP on low-level systems
-                    such as ESP32 microcontrollers.
-                </p>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <h2>League of Legends Statistical Analysis</h2>
-                    <span class="project-date">2025</span>
-                </div>
-                <div class="project-tech">
-                    <span class="tag">Python</span>
-                    <span class="tag">pandas</span>
-                    <span class="tag">scikit-learn</span>
-                </div>
-                <p>
-                    Cleaned a large dataset (200k) with pandas and engineered features via sklearn transformers.
-                    Visualized and hypothesis-tested (t-test, permutation) distributions to determine causal
-                    relationships between groups on early-game win factors.
-                </p>
-                <ul>
-                    <li>Built hyperparameter-tuning pipelines to train ensemble learning models (Decision Trees/Random Forest) and Logistic Regression</li>
-                    <li>Optimized bias-variance on L2 and Entropy for win/loss classification</li>
-                </ul>
+                    <img src="https://vis-society.github.io/labs/2/images/empty.svg" alt="">
+                    <p>CV web app for meal planning from receipts: TypeScript, Supabase, Google Vision, Claude (Berkeley AI Hackathon).</p>
+                </article>
+                <article>
+                    <h2>Weak-to-Strong ICL</h2>
+                    <img src="https://vis-society.github.io/labs/2/images/empty.svg" alt="">
+                    <p>Weak/strong GPT pairs on MATH with async OpenAI evaluation and weak-bank caching in Colab.</p>
+                </article>
+                <article>
+                    <h2>IEEE Embedded AI</h2>
+                    <img src="https://vis-society.github.io/labs/2/images/empty.svg" alt="">
+                    <p>SLMs for speech-to-text on ESP32-class devices.</p>
+                </article>
+                <article>
+                    <h2>LoL Win Factors</h2>
+                    <img src="https://vis-society.github.io/labs/2/images/empty.svg" alt="">
+                    <p>EDA and ensemble models on a 200k-row League of Legends dataset (pandas, scikit-learn).</p>
+                </article>
+                <article>
+                    <h2>Lorem ipsum dolor</h2>
+                    <img src="https://vis-society.github.io/labs/2/images/empty.svg" alt="">
+                    <p>Sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </article>
+                <article>
+                    <h2>Ut enim ad minim</h2>
+                    <img src="https://vis-society.github.io/labs/2/images/empty.svg" alt="">
+                    <p>Veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute.</p>
+                </article>
+                <article>
+                    <h2>Irure dolor in reprehenderit</h2>
+                    <img src="https://vis-society.github.io/labs/2/images/empty.svg" alt="">
+                    <p>Voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident.</p>
+                </article>
+                <article>
+                    <h2>Sunt in culpa qui</h2>
+                    <img src="https://vis-society.github.io/labs/2/images/empty.svg" alt="">
+                    <p>Officia deserunt mollit anim id est laborum sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
+                </article>
+                <article>
+                    <h2>Accusantium doloremque</h2>
+                    <img src="https://vis-society.github.io/labs/2/images/empty.svg" alt="">
+                    <p>Laudantium totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae.</p>
+                </article>
+                <article>
+                    <h2>Dicta sunt explicabo</h2>
+                    <img src="https://vis-society.github.io/labs/2/images/empty.svg" alt="">
+                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni.</p>
+                </article>
             </div>
         </section>
     </main>
