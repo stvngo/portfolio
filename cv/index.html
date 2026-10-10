@@ -40,10 +40,21 @@
                 <header>
                     <h3>Data Science, B.S.</h3>
                     <p>University of California, San Diego; Halicioglu Data Science Institute</p>
-                    <p><time datetime="2024">2024</time> &ndash; <time datetime="2028">2028</time></p>
+                    <p><time datetime="2024">2024</time> &ndash; <time datetime="2028-06">Jun 2028</time> (Expected)</p>
                 </header>
                 <p>Mathematics Minor. GPA: 3.85 / 4.0</p>
-                <p><strong>Coursework:</strong> Data Structures &amp; Algorithmic Analysis, Convex Optimization, Representation Learning, Linear Algebra, Differential Equations, Calculus, Statistics, Discrete Math, Probability Theory, Combinatorics, Relational Databases, Graph Theory, Research Methodology.</p>
+            </article>
+
+            <article>
+                <header>
+                    <h3>Machine Learning Research Intern</h3>
+                    <p>U.S. National Science Foundation &ndash; Texas A&amp;M University, College Station, TX</p>
+                    <p><time datetime="2026-05">May 2026</time> &ndash; <time datetime="2026-08">Aug 2026</time></p>
+                </header>
+                <ul>
+                    <li>Built a sparse collaborative filtering system for the Texas Department of Transportation, learning latent pay-item representations with TensorFlow VAEs, OpenAI text-embedding-3, and matrix factorization.</li>
+                    <li>Evaluated embeddings on downstream XGBoost, MLP, and Random Forest tasks with ElasticNet selection across 50 features, improving cost/schedule estimation by 18% over PCA/UMAP baselines.</li>
+                </ul>
             </article>
 
             <article>
@@ -69,6 +80,8 @@
                 <ul>
                     <li>Training CNNs/YOLO and leveraging particle-tracking algorithms (TrackPy, TrackMate, ImageJ) to model 300+ amoebae aggregative motility.</li>
                     <li>Tuned hyperparameters for cross-frame vectorization and kinematics modeling.</li>
+                    <li>Processed 1.5 million+ cell interaction events into trajectory datasets, separating true motility from Brownian motion at cosine = 0.7.</li>
+                    <li>Fine-tuned RF-DETR and YOLOv26 instance segmentation on 300 Roboflow/SAM3-annotated images, reaching 97% mAP@50.</li>
                 </ul>
             </article>
 
@@ -88,10 +101,11 @@
                 <header>
                     <h3>Machine Learning Researcher</h3>
                     <p>Algoverse AI Research</p>
-                    <p><time datetime="2025-06">Jun 2025</time> &ndash; <time datetime="2025-11">Nov 2025</time></p>
+                    <p><time datetime="2025-06">Jun 2025</time> &ndash; <time datetime="2026-06">Jun 2026</time></p>
                 </header>
                 <ul>
                     <li>Collaborated with industry PIs (Meta, Berkeley EECS, Amazon).</li>
+                    <li>TCR-Bench (COLM 2026): measured temporal conflict resolution in Gemini, Qwen, and Gemma VLMs, using SAM3 and Kling O1 to inject visually conflicting states into short videos.</li>
                     <li>First-authored work on pivotal token representations in LLM Chain-of-Thought outputs.</li>
                     <li>Used NVIDIA T4/A100 CUDA to train classification models on Qwen hidden states (&gt;85% accuracy).</li>
                     <li>Architected a data pipeline for text generation and activation dimensionality reduction (PCA/t-SNE) across 29 layers.</li>
@@ -116,6 +130,11 @@
                 </header>
                 <ul class="publication-list">
                     <li>
+                        (incl. Ngo, S.) (<time datetime="2026">2026</time>).
+                        <cite>TCR-Bench: Temporal Conflict Resolution in Vision-Language Models.</cite>
+                        COLM 2026.
+                    </li>
+                    <li>
                         Tang, J. et al. (incl. Ngo, S.) (<time datetime="2026">2026</time>).
                         <cite>S&sup3;-Sim: Simulating Humans for Personalized Language Modeling.</cite>
                         ICML 2026 Submission, In Review.
@@ -127,6 +146,12 @@
                         arXiv:2512.22207.
                         <a href="https://doi.org/10.48550/arXiv.2512.22207" target="_blank" rel="noopener noreferrer">DOI</a>
                     </li>
+                    <li>
+                        Ngo, S. et al. (<time datetime="2025">2025</time>).
+                        <cite>Pivotal Token Representations Encode Reasoning Shifts in Large Language Models.</cite>
+                        BlackBox EMNLP 2025.
+                        <a href="https://openreview.net/forum?id=SAY6fuvpwo" target="_blank" rel="noopener noreferrer">OpenReview</a>
+                    </li>
                 </ul>
             </article>
         </section>
@@ -135,8 +160,13 @@
             <h2 id="cv-projects">Selected Projects</h2>
 
             <article>
-                <header><h3>IEEE &mdash; Embedded AI Engineering Project</h3></header>
-                <p>Optimized small language models (SLMs) for speech-to-text NLP on low-level systems (e.g. ESP32, microcontrollers).</p>
+                <header><h3>TumorSense &mdash; 1st Place</h3></header>
+                <p>Deep CNNs and SVMs on breast cancer histopathology images and nuclei data (98% accuracy); full-stack React/FastAPI app with SHAP/LIME explainability.</p>
+            </article>
+
+            <article>
+                <header><h3>InvasiveWatch &mdash; 1st Place</h3></header>
+                <p>Geospatial recommendation engine ranking similar invasive species for any worldwide location, enriching a cosine similarity dataset with 7 APIs (React/Vite, FastAPI, FAISS, Mapbox GL).</p>
             </article>
 
             <article>
@@ -164,7 +194,7 @@
                     <p>The Bias Lab</p>
                     <p><time datetime="2025-08">Aug 2025</time> &ndash; <time datetime="2025-12">Dec 2025</time></p>
                 </header>
-                <p>Dockerized narrative clustering stack, NewsAPI.ai ingestion, AWS ECS Fargate, Lambda, EventBridge, MongoDB/S3, FAISS, REST APIs, Vercel and AWS App Runner deployment.</p>
+                <p>Dockerized narrative clustering stack, NewsAPI.ai ingestion, AWS ECS Fargate, Lambda, EventBridge, MongoDB/S3, FAISS, REST APIs, Vercel and AWS App Runner deployment. Async LLM claim-comparison engine (BERT, OpenAI API) to cross-check claims and measure tone across sources.</p>
             </article>
 
             <article>
@@ -180,10 +210,10 @@
         <section class="doc-section" aria-labelledby="cv-skills">
             <h2 id="cv-skills">Technical Skills</h2>
             <article>
-                <p><strong>Languages:</strong> Python, SQL, R, MATLAB, LaTeX, Java, C++</p>
-                <p><strong>Libraries:</strong> scikit-learn, pandas, NumPy, Matplotlib, Seaborn, Plotly, PyTorch, OpenCV</p>
-                <p><strong>Frameworks:</strong> Runpod, vLLM, Bytedance verl, Redis, PostgreSQL, MongoDB, JUnit, ImageJ, Jupyter, AGILE</p>
-                <p><strong>Tools:</strong> AWS, Git/GitHub, Docker, Google Cloud Platform, OpenRouter, Colab, Hugging Face, Overleaf, VS Code, IntelliJ, JIRA, Confluence, Linear, Slack, Notion</p>
+                <p><strong>Languages:</strong> Python, SQL, R, MATLAB, Java, C++, HTML/CSS, LaTeX</p>
+                <p><strong>Libraries:</strong> FastAPI, pandas, scikit-learn, NumPy, PyTorch, Matplotlib, Seaborn, Plotly, SciPy, OpenCV, Hugging Face, PySpark, Dask, D3.js</p>
+                <p><strong>MLOps:</strong> SHAP, LIME, LangGraph, FAISS, OpenAI, Pinecone, pgvector, RAG, embeddings, vLLM, Runpod, Bytedance verl</p>
+                <p><strong>Tools:</strong> Docker, Git/GitHub, PostgreSQL, MongoDB, Redis, AWS, GCP, Vercel, Jupyter, Conda, Colab, ImageJ, Overleaf, VS Code, IntelliJ, Cursor, Claude, JIRA, Confluence, Linear, Notion</p>
             </article>
         </section>
     </main>

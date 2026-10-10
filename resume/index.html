@@ -41,12 +41,24 @@
                     <p>La Jolla, CA</p>
                 </header>
                 <p><strong>Bachelor of Science in Data Science</strong>, Mathematics Minor</p>
-                <p>GPA: 3.8 / 4.0 &middot; Expected graduation <time datetime="2028">2028</time></p>
+                <p>GPA: 3.8 / 4.0 &middot; Expected <time datetime="2028-06">Jun 2028</time></p>
             </article>
         </section>
 
         <section class="doc-section" aria-labelledby="resume-experience">
             <h2 id="resume-experience">Experience</h2>
+
+            <article>
+                <header>
+                    <h3>Machine Learning Research Intern</h3>
+                    <p>U.S. National Science Foundation &middot; College Station, TX</p>
+                    <p><time datetime="2026-05">May 2026</time> &ndash; <time datetime="2026-08">Aug 2026</time></p>
+                </header>
+                <ul>
+                    <li>Sparse collaborative filtering for the Texas Department of Transportation, learning latent pay-item representations with TensorFlow VAEs, OpenAI text-embedding-3, and matrix factorization.</li>
+                    <li>Evaluated embeddings on downstream XGBoost, MLP, and Random Forest tasks with ElasticNet selection across 50 features, improving cost/schedule estimation by 18% over PCA/UMAP baselines.</li>
+                </ul>
+            </article>
 
             <article>
                 <header>
@@ -77,7 +89,9 @@
                     <p><time datetime="2025-09">Sep 2025</time> &ndash; Present</p>
                 </header>
                 <ul>
-                    <li>Multi-object tracking (ImageJ), modeling 200k+ amoeba merging events, Python statistical mechanics (NumPy, pandas, Plotly).</li>
+                    <li>Python image-processing pipeline with Kalman filtering, contour detection, and multi-object tracking across 8,000+ TIFF microscopy frames.</li>
+                    <li>Processed 1.5 million+ cell interaction events into trajectory datasets (NumPy, pandas, Plotly), separating true motility from Brownian motion at cosine = 0.7.</li>
+                    <li>Fine-tuned RF-DETR and YOLOv26 instance segmentation on 300 Roboflow/SAM3-annotated images, reaching 97% mAP@50.</li>
                 </ul>
             </article>
 
@@ -88,7 +102,8 @@
                     <p><time datetime="2025-07">Jul 2025</time> &ndash; <time datetime="2025-12">Dec 2025</time></p>
                 </header>
                 <ul>
-                    <li>Breaking news platform (FastAPI/Next.js), AWS (EventBridge/Fargate), OpenAI GPT-3.5 prompt engineering, REST API design.</li>
+                    <li>Breaking news platform (FastAPI/Next.js) ingesting 100+ articles/day on AWS EventBridge + ECS Fargate; raised $125K pre-seed.</li>
+                    <li>Async LLM claim-comparison engine (BERT, OpenAI API, MongoDB, S3) to cross-check claims, detect omissions, and measure tone across sources.</li>
                 </ul>
             </article>
 
@@ -107,16 +122,43 @@
                 <header>
                     <h3>Machine Learning Researcher</h3>
                     <p>Algoverse AI Research &middot; Palo Alto, CA</p>
-                    <p><time datetime="2025-06">Jun 2025</time> &ndash; <time datetime="2025-11">Nov 2025</time></p>
+                    <p><time datetime="2025-06">Jun 2025</time> &ndash; <time datetime="2026-06">Jun 2026</time></p>
                 </header>
                 <ul>
-                    <li>Interpretability on LLM Chain-of-Thought (EMNLP 2025), NVIDIA T4/A100 CUDA training, PyTorch/Transformer pipelines.</li>
+                    <li><strong>Pivotal Token Representations (EMNLP 2025):</strong> first-authored interpretability research; linear probes on 1,024-dim. Qwen activations predict reasoning-shift tokens at 89% accuracy.</li>
+                    <li>PyTorch token-labeling, activation extraction, and steering pipelines over vLLM across 29 layers, improving math reasoning by 50%.</li>
+                    <li><strong>GamiBench (AAAI, Nature 2026):</strong> benchmarked 22 MLLMs/VLMs on 340+ crease-fold pairs for 2D-to-3D spatial reasoning.</li>
+                    <li><strong>TCR-Bench (COLM 2026):</strong> measured temporal conflict resolution in Gemini, Qwen, and Gemma VLMs using SAM3 and Kling O1 video edits.</li>
                 </ul>
             </article>
         </section>
 
         <section class="doc-section" aria-labelledby="resume-projects">
             <h2 id="resume-projects">Projects</h2>
+
+            <article>
+                <header>
+                    <h3>TumorSense</h3>
+                    <p>1st Place, faculty decision &middot; <time datetime="2026-04">Apr 2026</time> &ndash; <time datetime="2026-06">Jun 2026</time></p>
+                </header>
+                <p>React, FastAPI, PyTorch, Docker, SHAP, LIME. Deep CNNs and SVMs on breast cancer histopathology images classifying benign/malignant at 98% accuracy, with XAI feature-importance analysis.</p>
+            </article>
+
+            <article>
+                <header>
+                    <h3>InvasiveWatch</h3>
+                    <p>1st Place, faculty-reviewed showcase &middot; <time datetime="2026-01">Jan 2026</time> &ndash; <time datetime="2026-03">Mar 2026</time></p>
+                </header>
+                <p>React/Vite, FastAPI, pandas, scikit-learn, Mapbox GL, Trefle.io, FAISS. Geospatial recommendation engine ranking similar invasive species for any worldwide location using 7 APIs.</p>
+            </article>
+
+            <article>
+                <header>
+                    <h3>Simulating Humans for Personalized Language Modeling</h3>
+                    <p>ICML 2026 submission &middot; <time datetime="2025-11">Nov 2025</time> &ndash; <time datetime="2026-02">Feb 2026</time></p>
+                </header>
+                <p>Python, LangGraph, LLM APIs. LangGraph human simulators with personas, persistent memory, and belief states across 8 benchmarks; SFT on Llama/Qwen improves intent inference by 20%.</p>
+            </article>
 
             <article>
                 <header>
@@ -133,33 +175,25 @@
                 </header>
                 <p>TypeScript, Next/Express.js, Supabase, Google Vision, Anthropic Claude. Computer vision web app for meal planning from grocery receipts.</p>
             </article>
-
-            <article>
-                <header>
-                    <h3>InvasiveWatch</h3>
-                    <p>DS3 at UCSD &mdash; 1st Place DS3 Project</p>
-                </header>
-                <p>React/Vite, FastAPI, pandas, FAISS, iNaturalist, Mapbox GL. Recommender system for species invasiveness risk.</p>
-            </article>
         </section>
 
         <section class="doc-section" aria-labelledby="resume-skills">
             <h2 id="resume-skills">Technical Skills</h2>
             <article>
                 <header><h3>Languages</h3></header>
-                <p>Python, SQL, MATLAB, LaTeX, R, Java, C++</p>
+                <p>Python, SQL, R, MATLAB, Java, C++, HTML/CSS, LaTeX</p>
             </article>
             <article>
                 <header><h3>Libraries</h3></header>
-                <p>pandas, scikit-learn, NumPy, PyTorch, MatPlotLib, Seaborn, Plotly, OpenCV, HuggingFace, OpenRouter, SciPy, FastAPI</p>
+                <p>FastAPI, pandas, scikit-learn, NumPy, PyTorch, Matplotlib, Plotly, SciPy, Hugging Face, PySpark, Dask, D3.js</p>
             </article>
             <article>
-                <header><h3>Frameworks</h3></header>
-                <p>Runpod, JUnit, ImageJ, Jupyter/Anaconda, vLLM, PostgreSQL, MongoDB, Tableau, Supabase, Firebase, Vercel, AGILE</p>
+                <header><h3>MLOps</h3></header>
+                <p>SHAP, LIME, LangGraph, FAISS, OpenAI, Pinecone, pgvector, Vercel, RAG, embeddings, vLLM</p>
             </article>
             <article>
-                <header><h3>Tools</h3></header>
-                <p>AWS, Git/GitHub, Docker, Overleaf, Google Cloud, Colab, Vercel, VSCode, IntelliJ, JIRA, Confluence, Notion, MS Excel, Linear</p>
+                <header><h3>Other</h3></header>
+                <p>Docker, Git/GitHub, PostgreSQL, MongoDB, Jupyter, Conda, AWS, GCP, Colab, VSCode, IntelliJ, Cursor, Claude</p>
             </article>
         </section>
     </main>
