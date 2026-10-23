@@ -97,3 +97,49 @@ form?.addEventListener('submit', function (event) {
 
   location.href = url.slice(0, -1);
 });
+
+// Lab 4 Step 1.2: load JSON data from a URL
+export async function fetchJSON(url) {
+  try {
+    // Fetch the JSON file from the given URL
+    const response = await fetch(url);
+    console.log(response);
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch projects: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching or parsing JSON data:', error);
+  }
+}
+
+// Lab 4 Step 1.4: render an array of projects into a container
+export function renderProjects(project, containerElement, headingLevel = 'h2') {
+  if (!containerElement) {
+    return;
+  }
+
+  if (!/^h[1-6]$/.test(headingLevel)) {
+    headingLevel = 'h2';
+  }
+
+  containerElement.innerHTML = '';
+
+  for (let p of project) {
+    const article = document.createElement('article');
+    article.innerHTML = `
+    <${headingLevel}>${p.title}</${headingLevel}>
+    <img src="${p.image}" alt="${p.title}">
+    <p>${p.description}</p>
+`;
+    containerElement.appendChild(article);
+  }
+}
+
+// Lab 4 Step 3.2: fetch public profile data from the GitHub API
+export async function fetchGitHubData(username) {
+  return fetchJSON(`https://api.github.com/users/${username}`);
+}

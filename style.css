@@ -383,6 +383,27 @@ form.contact-form button[type="submit"] {
   background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
 }
 
+/* Lab 4 Step 3: GitHub profile stats */
+#profile-stats dl {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 0;
+}
+
+#profile-stats dt {
+  grid-row: 1;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: color-mix(in oklch, canvastext 65%, canvas);
+}
+
+#profile-stats dd {
+  grid-row: 2;
+  margin: 0;
+  font-size: 2em;
+}
+
 /* Layout helpers (contact page two-column; not duplicated in lab text but needed for structure) */
 .contact-grid {
   display: grid;

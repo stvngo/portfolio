@@ -1,0 +1,74 @@
+[
+  {
+    "title": "TumorSense",
+    "year": "2026",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Deep CNNs and SVMs on breast cancer histopathology images and nuclei data, classifying benign vs. malignant at 98% accuracy; full-stack React/FastAPI app with SHAP/LIME explainability (1st Place, faculty decision)."
+  },
+  {
+    "title": "TxDOT Pay-Item Embeddings",
+    "year": "2026",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Sparse collaborative filtering for the Texas Department of Transportation using TensorFlow VAEs, OpenAI embeddings, and matrix factorization, improving cost/schedule estimation by 18% (NSF internship)."
+  },
+  {
+    "title": "InvasiveWatch",
+    "year": "2026",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Geospatial recommendation engine ranking similar invasive species for any location worldwide, using 7 APIs to enrich a cosine similarity dataset: React/Vite, FastAPI, FAISS, Mapbox GL, Trefle.io (1st Place)."
+  },
+  {
+    "title": "TCR-Bench",
+    "year": "2026",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Measures temporal conflict resolution in Gemini, Qwen, and Gemma VLMs, using SAM3 and Kling O1 to inject visually conflicting states into short videos (COLM 2026)."
+  },
+  {
+    "title": "S³-Sim",
+    "year": "2025",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "LangGraph human simulators with personas, persistent memory, and belief states, generating SFT data that improves Llama/Qwen intent inference by 20% (ICML 2026 submission)."
+  },
+  {
+    "title": "GamiBench",
+    "year": "2025",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Benchmark for 22 MLLMs/VLMs on multi-modal 2D-to-3D spatial reasoning over 340+ origami crease-fold pairs (3x AAAI, Springer-Nature 2026)."
+  },
+  {
+    "title": "Amoeba Motility Tracking",
+    "year": "2025",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Kalman-filtered multi-object tracking over 8,000+ microscopy frames and RF-DETR/YOLO segmentation at 97% mAP@50 for chemotaxis analysis (Rappel Lab)."
+  },
+  {
+    "title": "Pivotal Token Representations",
+    "year": "2025",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Linear probes on 1,024-dim. Qwen activations predicting reasoning-shift tokens at 89% accuracy, plus vLLM steering across 29 layers (EMNLP 2025)."
+  },
+  {
+    "title": "The Bias Lab",
+    "year": "2025",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Breaking news platform with FastAPI/Next.js, AWS EventBridge + ECS Fargate ingestion of 100+ articles/day, and an LLM claim-comparison engine ($125K pre-seed)."
+  },
+  {
+    "title": "SmartRation",
+    "year": "2025",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "CV web app for meal planning from receipts: TypeScript, Supabase, Google Vision, Claude (Berkeley AI Hackathon)."
+  },
+  {
+    "title": "Weak-to-Strong ICL",
+    "year": "2025",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Weak/strong GPT pairs on MATH with async OpenAI evaluation and weak-bank caching in Colab."
+  },
+  {
+    "title": "LoL Win Factors",
+    "year": "2024",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "EDA and ensemble models on a 200k-row League of Legends dataset (pandas, scikit-learn)."
+  }
+]
