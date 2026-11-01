@@ -429,3 +429,83 @@ footer {
   justify-content: space-between;
   align-items: center;
 }
+
+/* Lab 5 Step 0.1: project year */
+.project-year {
+  font-family: Baskerville, serif;
+  font-variant-numeric: oldstyle-nums;
+  color: color-mix(in oklch, canvastext 65%, canvas);
+}
+
+/* Lab 5 Step 1.1: pie chart size */
+#projects-pie-plot {
+  max-width: 20em;
+  margin-block: 2em;
+
+  overflow: visible;
+
+  /* Step 5.1: fade other wedges when one is hovered */
+  &:has(path:hover) {
+    path:not(:hover) {
+      opacity: 0.5;
+    }
+  }
+
+  path {
+    transition: 300ms;
+    cursor: pointer;
+  }
+}
+
+/* Lab 5 Step 2.2: legend */
+.swatch {
+  display: inline-block;
+  width: 1em;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background-color: var(--color);
+}
+
+.legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  gap: 1em;
+  flex: 1;
+  margin-block: 1em;
+  padding: 1em;
+  border: 1px solid oklch(50% 10% 200 / 40%);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+
+  em {
+    color: color-mix(in oklch, canvastext 65%, canvas);
+  }
+}
+
+/* Lab 5 Step 2.3: pie chart and legend side by side */
+.container {
+  display: flex;
+  align-items: center;
+  gap: 3em;
+}
+
+/* Lab 5 Step 4.1: search field */
+.searchBar {
+  width: 100%;
+  padding: 0.25em 0.5em;
+  margin-block: 1em;
+  font-size: 150%;
+}
+
+/* Lab 5 Step 5.2: selected wedge and legend item */
+.selected {
+  --color: oklch(60% 45% 0) !important;
+
+  &:is(path) {
+    fill: var(--color);
+  }
+}
