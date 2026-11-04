@@ -25,13 +25,13 @@
   },
   {
     "title": "S³-Sim",
-    "year": "2025",
+    "year": "2026",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
     "description": "LangGraph human simulators with personas, persistent memory, and belief states, generating SFT data that improves Llama/Qwen intent inference by 20% (ICML 2026 submission)."
   },
   {
     "title": "GamiBench",
-    "year": "2025",
+    "year": "2026",
     "image": "https://vis-society.github.io/labs/2/images/empty.svg",
     "description": "Benchmark for 22 MLLMs/VLMs on multi-modal 2D-to-3D spatial reasoning over 340+ origami crease-fold pairs (3x AAAI, Springer-Nature 2026)."
   },

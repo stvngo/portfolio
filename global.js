@@ -1,3 +1,4 @@
+// Step 1: Selector function for DOM manipulation
 console.log('IT’S ALIVE!');
 
 function $$(selector, context = document) {
@@ -11,7 +12,7 @@ function $$(selector, context = document) {
 //   (a) => a.host === location.host && a.pathname === location.pathname,
 // );
 //
-// currentLink?.classList.add('current');
+// currentLink?.classList.add('current'); // ? is the chaining operator to prevent errors
 
 // Step 3: automatic navigation menu
 let pages = [
@@ -34,25 +35,30 @@ for (let p of pages) {
   let url = p.url;
   let title = p.title;
 
-  url = !url.startsWith('http') ? BASE_PATH + url : url;
+  // check if the url is relative (does not start with http)
+  url = !url.startsWith('http') ? BASE_PATH + url : url; // ternary operator
 
   let a = document.createElement('a');
   a.href = url;
   a.textContent = title;
 
+  // check if the link is the current page
   a.classList.toggle(
     'current',
     a.host === location.host && a.pathname === location.pathname,
   );
+
+  // if the link is external, open in a new tab
   if (a.host !== location.host) {
     a.target = '_blank';
   }
 
+  // append the link element to the nav
   nav.append(a);
 }
 
 // Step 4: dark mode switcher
-document.body.insertAdjacentHTML(
+document.body.insertAdjacentHTML( // provided by the lab
   'afterbegin',
   `
 	<label class="color-scheme">
@@ -72,6 +78,7 @@ function setColorScheme(colorScheme) {
   select.value = colorScheme;
 }
 
+// 4.5.2: set the color scheme from local storage
 if ('colorScheme' in localStorage) {
   setColorScheme(localStorage.colorScheme);
 }
@@ -79,20 +86,20 @@ if ('colorScheme' in localStorage) {
 select.addEventListener('input', function (event) {
   console.log('color scheme changed to', event.target.value);
   setColorScheme(event.target.value);
-  localStorage.colorScheme = event.target.value;
+  localStorage.colorScheme = event.target.value; // 4.5.1: save user preference to local storage
 });
 
 // Step 5: better contact form
 let form = document.querySelector('form');
 
-form?.addEventListener('submit', function (event) {
+form?.addEventListener('submit', function (event) { // runs on every page, so use ? to prevent errors
   event.preventDefault();
 
-  let data = new FormData(form);
-  let url = form.action + '?';
+  let data = new FormData(form); // built-in object lets you easily construct a URL query string from the form data
+  let url = form.action + '?'; // construct the URL query (mailto:email...)
 
   for (let [name, value] of data) {
-    url += name + '=' + encodeURIComponent(value) + '&';
+    url += name + '=' + encodeURIComponent(value) + '&'; // safely encode values 
   }
 
   location.href = url.slice(0, -1);
@@ -109,6 +116,7 @@ export async function fetchJSON(url) {
       throw new Error(`Failed to fetch projects: ${response.statusText}`);
     }
 
+    // parse the JSON response
     const data = await response.json();
     return data;
   } catch (error) {
@@ -122,14 +130,14 @@ export function renderProjects(project, containerElement, headingLevel = 'h2') {
     return;
   }
 
-  if (!/^h[1-6]$/.test(headingLevel)) {
+  if (!/^h[1-6]$/.test(headingLevel)) { // check if the heading is valid (h1-h6)
     headingLevel = 'h2';
   }
 
-  containerElement.innerHTML = '';
+  containerElement.innerHTML = ''; // clear the container
 
   for (let p of project) {
-    const article = document.createElement('article');
+    const article = document.createElement('article'); // secure and modular
     article.innerHTML = `
     <${headingLevel}>${p.title}</${headingLevel}>
     <img src="${p.image}" alt="${p.title}">
