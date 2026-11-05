@@ -136,19 +136,27 @@ function renderScatterPlot(data, commits) {
     .range([0, width]) // width of svg
     .nice(); // extend domain to nice values
 
-  const yScale = d3.scaleLinear().domain([0, 24]).range([height, 0])
+  const yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
   // linear hour of day (0-24), using whole height of svg
 
-  const dots = svg.append('g').attr('class', 'dots');
+  const dots = svg.append("g").attr("class", "dots");
 
   dots
-    .selectAll('circle')
+    .selectAll("circle")
     .data(commits)
-    .join('circle')
-    .attr('cx', (d) => xScale(d.datetime))
-    .attr('cy', (d) => yScale(d.hourFrac))
-    .attr('r', 5)
-    .attr('fill', 'steelblue');
+    .join("circle")
+    .attr("cx", (d) => xScale(d.datetime))
+    .attr("cy", (d) => yScale(d.hourFrac))
+    .attr("r", 5)
+    .attr("fill", "steelblue")
+    .on("mouseenter", (event, commit) => {
+      renderTooltipContent(commit);
+      updateTooltipVisibility(true);
+      updateTooltipPosition(event);
+    })
+    .on("mouseleave", () => {
+      updateTooltipVisibility(false);
+    });
 
   // Step 2.2: Drawing the axes
   const margin = { top: 10, right: 10, bottom: 30, left: 20 };
@@ -169,30 +177,63 @@ function renderScatterPlot(data, commits) {
   const xAxis = d3.axisBottom(xScale);
   const yAxis = d3
     .axisLeft(yScale)
-    .tickFormat((d) => String(d % 24).padStart(2, '0') + ':00');
-    // d%24 to get 0 for midnight
-    // string.padStart() as two digit number to format as HH:MM
+    .tickFormat((d) => String(d % 24).padStart(2, "0") + ":00");
+  // d%24 to get 0 for midnight
+  // string.padStart() as two digit number to format as HH:MM
 
   // Add gridlines BEFORE the axes
   const gridlines = svg
-    .append('g')
-    .attr('class', 'gridlines')
-    .attr('transform', `translate(${usableArea.left}, 0)`);
+    .append("g")
+    .attr("class", "gridlines")
+    .attr("transform", `translate(${usableArea.left}, 0)`);
 
+  // Step 2.3: Drawing the gridlines
   // Create gridlines as an axis with no labels and full-width ticks
-  gridlines.call(d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width));
+  gridlines.call(
+    d3.axisLeft(yScale).tickFormat("").tickSize(-usableArea.width),
+  );
 
   // Add X axis
   svg
-    .append('g')
-    .attr('transform', `translate(0, ${usableArea.bottom})`)
+    .append("g")
+    .attr("transform", `translate(0, ${usableArea.bottom})`)
     .call(xAxis);
 
   // Add Y axis
   svg
-    .append('g')
-    .attr('transform', `translate(${usableArea.left}, 0)`)
+    .append("g")
+    .attr("transform", `translate(${usableArea.left}, 0)`)
     .call(yAxis);
 }
 
 renderScatterPlot(data, commits);
+
+// Step 3: Adding a tooltip
+
+function renderTooltipContent(commit) {
+  const link = document.getElementById("commit-link");
+  const date = document.getElementById("commit-date");
+
+  if (Object.keys(commit).length === 0) return;
+
+  link.href = commit.url;
+  link.textContent = commit.id;
+  date.textContent = commit.datetime?.toLocaleString("en", {
+    dateStyle: "full",
+  });
+}
+
+// Step 3.3: Only appear when hovering dot
+function updateTooltipVisibility(isVisible) {
+  const tooltip = document.getElementById("commit-tooltip");
+  tooltip.hidden = !isVisible; // control visibility
+}
+
+// Step 3.4: Position tooltip near mouse cursor
+function updateTooltipPosition(event) {
+  const tooltip = document.getElementById("commit-tooltip");
+  tooltip.style.left = `${event.clientX}px`;
+  tooltip.style.top = `${event.clientY}px`;
+}
+
+// Step 4: Communicating lines edited via dot size

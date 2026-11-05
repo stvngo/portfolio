@@ -531,7 +531,36 @@ footer {
   font-size: 2em;
 }
 
+/* Step 2.4: Drawing the gridlines */
 #scatter-plot .gridlines {
   stroke: oklch(50% 10% 200 / 20%);
   stroke-opacity: 0.2;
+}
+
+/* Step 3: Adding a tooltip */
+dl.info {
+  display: grid;
+  transition-duration: 500ms;
+  transition-property: opacity, visibility;
+}
+
+dl.info[hidden]:not(:hover, :focus-within) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.tooltip {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+}
+
+circle {
+  transition: 200ms;
+  transform-origin: center; /* scale from the center rather than top-left */
+  transform-box: fill-box;
+}
+
+circle:hover {
+  transform: scale(1.5);
 }
