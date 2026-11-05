@@ -115,99 +115,6 @@ function renderCommitInfo(data, commits) {
 
 renderCommitInfo(data, commits);
 
-// Step 2: Visualizing time and day of commits in a scatter plot
-
-// Step 2.1: Drawing the dots
-function renderScatterPlot(data, commits) {
-  // Define dimensions
-  const width = 1000;
-  const height = 600;
-
-  const svg = d3
-    .select("#scatter-plot")
-    .append("svg")
-    .attr("viewBox", `0 0 ${width} ${height}`)
-    .style("overflow", "visible");
-
-  // create scales
-  const xScale = d3
-    .scaleTime() // handles dates and times
-    .domain(d3.extent(commits, (d) => d.datetime)) // find min/max datetimes
-    .range([0, width]) // width of svg
-    .nice(); // extend domain to nice values
-
-  const yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
-  // linear hour of day (0-24), using whole height of svg
-
-  const dots = svg.append("g").attr("class", "dots");
-
-  dots
-    .selectAll("circle")
-    .data(commits)
-    .join("circle")
-    .attr("cx", (d) => xScale(d.datetime))
-    .attr("cy", (d) => yScale(d.hourFrac))
-    .attr("r", 5)
-    .attr("fill", "steelblue")
-    .on("mouseenter", (event, commit) => {
-      renderTooltipContent(commit);
-      updateTooltipVisibility(true);
-      updateTooltipPosition(event);
-    })
-    .on("mouseleave", () => {
-      updateTooltipVisibility(false);
-    });
-
-  // Step 2.2: Drawing the axes
-  const margin = { top: 10, right: 10, bottom: 30, left: 20 };
-  const usableArea = {
-    top: margin.top,
-    right: width - margin.right,
-    bottom: height - margin.bottom,
-    left: margin.left,
-    width: width - margin.left - margin.right,
-    height: height - margin.top - margin.bottom,
-  };
-
-  // Update scales with new ranges
-  xScale.range([usableArea.left, usableArea.right]); // x-axis is left to right
-  yScale.range([usableArea.bottom, usableArea.top]);
-
-  // Create the axes
-  const xAxis = d3.axisBottom(xScale);
-  const yAxis = d3
-    .axisLeft(yScale)
-    .tickFormat((d) => String(d % 24).padStart(2, "0") + ":00");
-  // d%24 to get 0 for midnight
-  // string.padStart() as two digit number to format as HH:MM
-
-  // Add gridlines BEFORE the axes
-  const gridlines = svg
-    .append("g")
-    .attr("class", "gridlines")
-    .attr("transform", `translate(${usableArea.left}, 0)`);
-
-  // Step 2.3: Drawing the gridlines
-  // Create gridlines as an axis with no labels and full-width ticks
-  gridlines.call(
-    d3.axisLeft(yScale).tickFormat("").tickSize(-usableArea.width),
-  );
-
-  // Add X axis
-  svg
-    .append("g")
-    .attr("transform", `translate(0, ${usableArea.bottom})`)
-    .call(xAxis);
-
-  // Add Y axis
-  svg
-    .append("g")
-    .attr("transform", `translate(${usableArea.left}, 0)`)
-    .call(yAxis);
-}
-
-renderScatterPlot(data, commits);
-
 // Step 3: Adding a tooltip
 
 function renderTooltipContent(commit) {
@@ -237,3 +144,112 @@ function updateTooltipPosition(event) {
 }
 
 // Step 4: Communicating lines edited via dot size
+
+// Step 4.1: Creating a radius scale
+const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
+
+const rScale = d3
+  .scaleSqrt() // area grows with square of radius, use sqrt for proportionality
+  .domain([minLines, maxLines])
+  .range([2, 30]); // adjust these values based on experimentation
+
+
+// Step 2: Visualizing time and day of commits in a scatter plot
+
+// Step 2.1: Drawing the dots
+function renderScatterPlot(data, commits) {
+    // Define dimensions
+    const width = 1000;
+    const height = 600;
+
+    // sort commits by total lines in descending order
+    const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
+  
+    const svg = d3
+      .select("#scatter-plot")
+      .append("svg")
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .style("overflow", "visible");
+  
+    // create scales
+    const xScale = d3
+      .scaleTime() // handles dates and times
+      .domain(d3.extent(commits, (d) => d.datetime)) // find min/max datetimes
+      .range([0, width]) // width of svg
+      .nice(); // extend domain to nice values
+  
+    const yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
+    // linear hour of day (0-24), using whole height of svg
+  
+    const dots = svg.append("g").attr("class", "dots");
+  
+    dots
+      .selectAll("circle")
+      .data(sortedCommits) // smaller dots on top of larger dots if overlapping
+      .join("circle")
+      .attr("cx", (d) => xScale(d.datetime))
+      .attr("cy", (d) => yScale(d.hourFrac))
+      // .attr("r", 5)
+      .attr("fill", "steelblue")
+      .attr("r", (d) => rScale(d.totalLines))
+      .style("fill-opacity", 0.7) // Add transparency for overlapping dots
+      .on("mouseenter", (event, commit) => {
+        d3.select(event.currentTarget).style("fill-opacity", 1);
+        renderTooltipContent(commit);
+        updateTooltipVisibility(true);
+        updateTooltipPosition(event);
+      })
+      .on("mouseleave", (event) => {
+        d3.select(event.currentTarget).style("fill-opacity", 0.7);
+        updateTooltipVisibility(false);
+      });
+  
+    // Step 2.2: Drawing the axes
+    const margin = { top: 10, right: 10, bottom: 30, left: 20 };
+    const usableArea = {
+      top: margin.top,
+      right: width - margin.right,
+      bottom: height - margin.bottom,
+      left: margin.left,
+      width: width - margin.left - margin.right,
+      height: height - margin.top - margin.bottom,
+    };
+  
+    // Update scales with new ranges
+    xScale.range([usableArea.left, usableArea.right]); // x-axis is left to right
+    yScale.range([usableArea.bottom, usableArea.top]);
+  
+    // Create the axes
+    const xAxis = d3.axisBottom(xScale);
+    const yAxis = d3
+      .axisLeft(yScale)
+      .tickFormat((d) => String(d % 24).padStart(2, "0") + ":00");
+    // d%24 to get 0 for midnight
+    // string.padStart() as two digit number to format as HH:MM
+  
+    // Add gridlines BEFORE the axes
+    const gridlines = svg
+      .append("g")
+      .attr("class", "gridlines")
+      .attr("transform", `translate(${usableArea.left}, 0)`);
+  
+    // Step 2.3: Drawing the gridlines
+    // Create gridlines as an axis with no labels and full-width ticks
+    gridlines.call(
+      d3.axisLeft(yScale).tickFormat("").tickSize(-usableArea.width),
+    );
+  
+    // Add X axis
+    svg
+      .append("g")
+      .attr("transform", `translate(0, ${usableArea.bottom})`)
+      .call(xAxis);
+  
+    // Add Y axis
+    svg
+      .append("g")
+      .attr("transform", `translate(${usableArea.left}, 0)`)
+      .call(yAxis);
+  }
+  
+  renderScatterPlot(data, commits);
