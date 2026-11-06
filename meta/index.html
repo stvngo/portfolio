@@ -21,7 +21,7 @@
         <div>
             <h2 class="section-title">Commits by time of day</h2>
             <div id="scatter-plot"></div>
-            <dl id="commit-tooltip" class="info tooltip" hidden>
+            <dl id="commit-tooltip" class="info tooltip" hidden> <!-- hide by default -->
                 <dt>Commit</dt>
                 <dd>
                   <a href="" id="commit-link" target="_blank"></a>
@@ -39,6 +39,8 @@
                 <dt>Lines edited</dt>
                 <dd id="commit-lines"></dd>
             </dl>
+            <p id="selection-count">No commits selected</p>
+            <dl id="language-breakdown" class="stats"></dl>
         </div>
         
     </section>
