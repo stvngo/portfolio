@@ -373,6 +373,8 @@ document.getElementById("commit-progress").addEventListener("input", (event) => 
 
 // Will get updated as user changes slider
 let filteredCommits = commits;
+// Step 2.4: Varying the color of dots by technology
+let colors = d3.scaleOrdinal(d3.schemeTableau10);
 updateFileDisplay(filteredCommits);
 
 function onTimeSliderChange() {
@@ -470,6 +472,6 @@ function updateFileDisplay(filteredCommits) {
   .selectAll('div')
   .data((d) => d.lines)
   .join('div')
-  .attr('class', 'loc');
+  .attr('class', 'loc')
+  .attr('style', (d) => `--color: ${colors(d.type)}`);
 }
-
