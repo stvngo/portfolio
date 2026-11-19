@@ -286,7 +286,7 @@ function renderScatterPlot(data, commits) {
 
   dots
     .selectAll("circle")
-    .data(sortedCommits) // smaller dots on top of larger dots if overlapping
+    .data(sortedCommits, (d) => d.id) // smaller dots on top of larger dots if overlapping, add commit as key
     .join("circle")
     .attr("cx", (d) => xScale(d.datetime))
     .attr("cy", (d) => yScale(d.hourFrac))
@@ -415,7 +415,7 @@ function updateScatterPlot(data, commits) {
   const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
   dots
     .selectAll('circle')
-    .data(sortedCommits)
+    .data(sortedCommits, (d) => d.id) // add commit as key (stable circles)
     .join('circle')
     .attr('cx', (d) => xScale(d.datetime))
     .attr('cy', (d) => yScale(d.hourFrac))

@@ -563,8 +563,15 @@ dl.info[hidden]:not(:hover, :focus-within) {
 
 circle {
   transition: 200ms;
+  /* transition: all 200ms, r calc(var(--r) * 100ms); */
   transform-origin: center; /* scale from the center rather than top-left */
   transform-box: fill-box;
+  /* Step 1.4: Entry transitions */
+  /* CSS transitions only fire for state changes where both start and end changes */
+  /* are described by CSS. A new element entering the DOM has no start state, so no transitions. */
+  @starting-style { /* Lab 8 Step 1.4: Entry transitions */
+    r: 0;
+  }
 }
 
 circle:hover {
