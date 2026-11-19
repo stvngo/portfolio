@@ -121,7 +121,7 @@ function renderTooltipContent(commit) {
   const link = document.getElementById("commit-link");
   const date = document.getElementById("commit-date");
   // add more content optionally
-  const time = document.getElementById("commit-time");
+  const time = document.getElementById("commit-date-time");
   const author = document.getElementById("commit-author");
   const totalLines = document.getElementById("commit-lines");
 
@@ -329,15 +329,107 @@ function renderScatterPlot(data, commits) {
   svg
     .append("g")
     .attr("transform", `translate(0, ${usableArea.bottom})`)
+    .attr("class", "x-axis") // new line to mark the g tag
     .call(xAxis);
 
   // Add Y axis
   svg
     .append("g")
     .attr("transform", `translate(${usableArea.left}, 0)`)
+    .attr("class", "y-axis") // for consistency
     .call(yAxis);
 
   createBrushSelector(svg);
 }
 
 renderScatterPlot(data, commits);
+
+
+// Lab 8
+
+// Step 1: Create filtering UI
+let commitProgress = 100;
+
+let timeScale = d3
+  .scaleTime()
+  .domain([
+    d3.min(commits, (d) => d.datetime),
+    d3.max(commits, (d) => d.datetime),
+  ])
+  .range([0, 100]);
+let commitMaxTime = timeScale.invert(commitProgress);
+
+document.getElementById("commit-progress").addEventListener("input", (event) => {
+  commitProgress = event.target.value;
+  commitMaxTime = timeScale.invert(commitProgress);
+  document.getElementById("commit-date-time").textContent = commitMaxTime.toLocaleString("en", {
+    dateStyle: "long",
+    timeStyle: "short",
+  });
+  onTimeSliderChange();
+});
+
+// Step 1.2: Filtering by commitMaxTime
+
+// Will get updated as user changes slider
+let filteredCommits = commits;
+
+function onTimeSliderChange() {
+  filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
+  updateScatterPlot(data, filteredCommits);
+}
+
+function updateScatterPlot(data, commits) {
+  const width = 1000;
+  const height = 600;
+  const margin = { top: 10, right: 10, bottom: 30, left: 20 };
+  const usableArea = {
+    top: margin.top,
+    right: width - margin.right,
+    bottom: height - margin.bottom,
+    left: margin.left,
+    width: width - margin.left - margin.right,
+    height: height - margin.top - margin.bottom,
+  };
+
+  const svg = d3.select('#scatter-plot').select('svg');
+
+  xScale = xScale.domain(d3.extent(commits, (d) => d.datetime));
+
+  const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
+  const rScale = d3.scaleSqrt().domain([minLines, maxLines]).range([2, 30]);
+
+  const xAxis = d3.axisBottom(xScale);
+  const xAxisGroup = svg.select('g.x-axis');
+  xAxisGroup.selectAll('*').remove();
+  xAxisGroup.call(xAxis);
+
+  // CHANGE: we should clear out the existing xAxis and then create a new one.
+  // svg
+  //   .append('g')
+  //   .attr('transform', `translate(0, ${usableArea.bottom})`)
+  //   .call(xAxis);
+
+  const dots = svg.select('g.dots');
+
+  const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
+  dots
+    .selectAll('circle')
+    .data(sortedCommits)
+    .join('circle')
+    .attr('cx', (d) => xScale(d.datetime))
+    .attr('cy', (d) => yScale(d.hourFrac))
+    .attr('r', (d) => rScale(d.totalLines))
+    .attr('fill', 'steelblue')
+    .style('fill-opacity', 0.7) // Add transparency for overlapping dots
+    .on('mouseenter', (event, commit) => {
+      d3.select(event.currentTarget).style('fill-opacity', 1); // Full opacity on hover
+      renderTooltipContent(commit);
+      updateTooltipVisibility(true);
+      updateTooltipPosition(event);
+    })
+    .on('mouseleave', (event) => {
+      d3.select(event.currentTarget).style('fill-opacity', 0.7);
+      updateTooltipVisibility(false);
+    });
+}

@@ -589,3 +589,13 @@ circle:hover {
 circle.selected {
   fill: #ff6b6b;
 }
+
+/* Lab 8 Step 1: filtering UI */
+#filter-container {
+  flex: 1;
+  align-items: baseline;
+}
+
+#commit-time {
+  margin-left: auto;
+}
