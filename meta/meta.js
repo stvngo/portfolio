@@ -382,7 +382,6 @@ updateFileDisplay(filteredCommits);
 function onTimeSliderChange() {
   filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
   updateScatterPlot(data, filteredCommits);
-  updateFileDisplay(filteredCommits);
 }
 
 function updateScatterPlot(data, commits) {
@@ -480,7 +479,7 @@ function updateFileDisplay(filteredCommits) {
 
 // Step 3: Storytelling (commits over time)
 
-d3.select('#scatter-story')
+d3.selectAll('#scatter-story, #files-story')
   .selectAll('.step')
   .data(commits)
   .join('div')
@@ -517,3 +516,18 @@ scroller
     step: '#scrolly-1 .step',
   })
   .onStepEnter(onStepEnter);
+
+// Step 4: Scrollytelling Part 2 (file sizes)
+
+function onFilesStepEnter(response) {
+  let maxTime = response.element.__data__.datetime;
+  updateFileDisplay(commits.filter((d) => d.datetime <= maxTime));
+}
+
+const filesScroller = scrollama();
+filesScroller
+  .setup({
+    container: '#scrolly-2',
+    step: '#scrolly-2 .step',
+  })
+  .onStepEnter(onFilesStepEnter);

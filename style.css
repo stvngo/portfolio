@@ -649,7 +649,8 @@ circle.selected {
 }
 
 /* Lab 8 Step 3: Storytelling (commits over time) */
-#scrolly-1 {
+#scrolly-1,
+#scrolly-2 {
   position: relative;
   display: flex;
   gap: 1rem;
@@ -673,4 +674,17 @@ circle.selected {
 
 .step {
   padding-bottom: 1em;
+}
+
+/* Lab 8 Step 4: Scrollytelling Part 2 (file sizes) */
+#files-story {
+  position: relative;
+  /* room for the last steps to reach the middle of the screen */
+  padding-bottom: 50vh;
+}
+
+#files-container {
+  position: sticky;
+  top: 0;
+  align-self: start;
 }
