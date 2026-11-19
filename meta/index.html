@@ -20,6 +20,16 @@
                 <input type="range" id="commit-progress" min="0" max="100" value="100">
                 <time id="commit-time"></time>
             </label>
+            <dl id="files">
+                <!-- we want the following structure for each file:
+                <div>
+                  <dt>
+                    <code>{file.name}</code>
+                  </dt>
+                  <dd>{file.lines.length} lines</dd>
+                </div>
+                -->
+              </dl>
         </div>
         <div id="stats">
             <h2 class="section-title">Summary</h2>

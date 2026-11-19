@@ -362,7 +362,7 @@ let commitMaxTime = timeScale.invert(commitProgress);
 document.getElementById("commit-progress").addEventListener("input", (event) => {
   commitProgress = event.target.value;
   commitMaxTime = timeScale.invert(commitProgress);
-  document.getElementById("commit-date-time").textContent = commitMaxTime.toLocaleString("en", {
+  document.getElementById("commit-time").textContent = commitMaxTime.toLocaleString("en", {
     dateStyle: "long",
     timeStyle: "short",
   });
@@ -373,10 +373,12 @@ document.getElementById("commit-progress").addEventListener("input", (event) => 
 
 // Will get updated as user changes slider
 let filteredCommits = commits;
+updateFileDisplay(filteredCommits);
 
 function onTimeSliderChange() {
   filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
   updateScatterPlot(data, filteredCommits);
+  updateFileDisplay(filteredCommits);
 }
 
 function updateScatterPlot(data, commits) {
@@ -433,3 +435,41 @@ function updateScatterPlot(data, commits) {
       updateTooltipVisibility(false);
     });
 }
+
+// Step 2.1: Adding unit visualization for files
+
+function updateFileDisplay(filteredCommits) {
+  let lines = filteredCommits.flatMap((d) => d.lines);
+  let files = d3
+    .groups(lines, (d) => d.file)
+    .map(([name, lines]) => {
+      return { name, lines };
+    })
+    .sort((a, b) => b.lines.length - a.lines.length); // sort by number of lines
+
+  let filesContainer = d3
+  .select('#files')
+  .selectAll('div')
+  .data(files, (d) => d.name)
+  .join(
+    // This code only runs when the div is initially rendered
+    (enter) =>
+      enter.append('div').call((div) => {
+        div.append('dt').append('code');
+        div.append('dd');
+      }),
+  );
+
+  // This code updates the div info
+  filesContainer
+  .select('dt')
+  .html((d) => `<code>${d.name}</code><small>${d.lines.length} lines</small>`);
+  // append one div for each line (2.2)
+  filesContainer
+  .select('dd')
+  .selectAll('div')
+  .data((d) => d.lines)
+  .join('div')
+  .attr('class', 'loc');
+}
+
