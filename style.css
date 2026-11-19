@@ -598,14 +598,14 @@ circle.selected {
 }
 
 /* Lab 8 Step 1: filtering UI */
-#filter-container {
+/* #filter-container {
   flex: 1;
   align-items: baseline;
 }
 
 #commit-time {
   margin-left: auto;
-}
+} */
 
 /* Lab 8 Step 2.1: Adding unit visualization for files */
 #files {
@@ -646,4 +646,31 @@ circle.selected {
   aspect-ratio: 1;
   background: var(--color);
   border-radius: 50%;
+}
+
+/* Lab 8 Step 3: Storytelling (commits over time) */
+#scrolly-1 {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+
+  > * {
+    flex: 1;
+  }
+}
+
+#scatter-story {
+  position: relative;
+}
+
+#scatter-plot {
+  position: sticky;
+  top: 0;
+  left: 0;
+  bottom: auto;
+  height: 50vh;
+}
+
+.step {
+  padding-bottom: 1em;
 }
